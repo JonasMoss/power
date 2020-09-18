@@ -1,0 +1,85 @@
+\documentclass[review, authoryear]{elsarticle}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{enumitem}   
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{remark}{Remark}
+%\usepackage[margin=1.5in]{geometry}
+\usepackage{geometry}
+
+%% <remove "preprint submitted to elsevier">
+%% \makeatletter
+%% \def\ps@pprintTitle{%
+%% \let\@oddhead\@empty
+%% \let\@evenhead\@empty
+%% \def\@oddfoot{}%
+%% \let\@evenfoot\@oddfoot}
+%% \makeatother
+%% </remove "preprint submitted to elsevier">
+
+\begin{document}
+\begin{frontmatter}
+\title{There is no uniformly unbiased independence test for densities}
+\author{Jonas Moss}
+\ead{jonasmgj@math.uio.no}
+\address{Department of Mathematics, University of Oslo, PB 1053, Blindern, NO-0316, Oslo, Norway}
+\begin{abstract} 
+There is no uniformly unbiased independence test for densities. 
+\end{abstract}
+\end{frontmatter}
+
+\begin{definition}
+A family $\mathcal{I}$ is \emph{separating} if it contains a collection of nicely shrinking sets to $x$ for almost every $x \in \mathbb{R}^k$.
+\end{definition}
+
+
+\begin{thm}
+\label{lem:Main theorem}
+Let $\mathcal{I}$ be a separating family of sets. Assume that
+(i) For all $I \in \mathcal{I}$ there is a pair $P\in \mathcal{P}$ and $Q \in \mathcal{Q}$ such that $P\mid_{I^c} = Q\mid_{I^c}$, 
+(ii) the family $\mathcal{P}$ includes the uniform distribution on $I$ for all $I \in \mathcal{I}$. Then there is no uniformly unbiased test of $P$ against $Q$.
+\end{thm}
+
+\begin{remark}
+Both (i) and (ii) can probably be weakened. For instance, (ii) could probably be weaked enough to accomodate unimodality. And it's probably possible to use some $\epsilon$s to make the support equal to $\mathbb{R}^k$.
+\end{remark}
+
+For example: $\mathcal{P}$ is the class of uniform distributions in $I$ while $\mathcal{Q}$ is the class of every other distribution defined on $I$.
+
+Examples:
+\begin{enumerate}
+	\item Independence testing
+	\item Conditional independence testing
+	\item Symmetry: 
+	\item Smoothness: Any kind of smoothness where $1$ is smooth.
+	\item Unimodality: Maybe, if some extra conditions are used. 
+	\item Goodness-of-fit testing: Obvious for uniform distributions. Try to make it work for e.g. the normal distribution. 
+\end{enumerate}
+
+
+Strong results:
+\begin{enumerate}
+	\item Independence testing
+	\item Two
+	\item Three
+\end{enumerate}
+
+Weaker results:
+\begin{enumerate}
+	\item Mean
+	\item Most from Romano
+	\item Conditional independence testing
+\end{enumerate}
+
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{power.bib}
+
+\end{document}

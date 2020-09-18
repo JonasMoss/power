@@ -1,0 +1,126 @@
+\documentclass[twoside]{article}
+\usepackage{power} % contains layout and most imported packages.
+\usepackage{cleveref}
+\usepackage{amsbsy}
+\usepackage{savesym}
+\usepackage{alphabeta}
+\savesymbol{Square}
+\usepackage{bbding}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+%%% ================
+%%% Check marks.
+%%% ================
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{awesome}{rgb}{1.0, 0.13, 0.32}
+\newcommand{\Right}{\color{cadmiumgreen} \Checkmark{}}
+\newcommand{\Wrong}{\color{awesome} \XSolid{}}
+
+%%% ================
+%%% Macros.
+%%% ================
+
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\providecommand{\algorithmname}{Algorithm}
+\floatname{algorithm}{\protect\algorithmname}
+
+\DeclareMathOperator{\Tr}{tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\mad}{mad}
+\DeclareMathOperator{\sd}{sd}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\argmax}{argmax}
+\newcommand{\1}{\mathbf{1}}
+\renewcommand{\epsilon}{\varepsilon}
+
+\title{There is no uniformly unbiased independence test for densities}
+
+\author{
+  Jonas Moss \orcid{0000-0002-6876-6964} \\
+  Department of Mathematics, University of Oslo\\
+  PB 1053, Blindern, NO-0316, Oslo, Norway \\
+  \it{jonasmgj@math.uio.no}
+}
+
+\titletag{An OSF preprint, v1.1}
+\makeatletter
+\titlerunning{\@title}
+\makeatother
+\authorrunning{Jonas Moss}
+
+\begin{document}
+\maketitle
+%\begin{abstract} 
+%There is no uniformly unbiased independence test for densities. 
+%\end{abstract}
+
+%\keywords{independence testing \and impossibility result \and hypothesis tests}
+
+\section{Introduction}
+Is there an uniformly unbiased independence test for densities? This question can be traced back to \citet{hoeffding1948non}, who proved the non-existence of uniformly unbiased independence tests based on ranks. As a test that fails to be uniformly unbiased has no power against at least one alternative, uniform unbiasedness is a property any sensible test should satisfy.
+
+In the tradition of \citet{bahadur1956nonexistence} and \citet{romano2004non}, \citet{shah2018hardness} recently showed a strong impossibility result
+for conditional independence testing. In this case there is no test
+that is unbiased against any alternative, a property \citet{shah2018hardness} and termed \emph{untestable}. This is not true
+for unconditional independence testing as there are tests such as
+Hoeffding's rank test \citep{hoeffding1948non} with pointwise asymptotic
+power equal to $1$.
+
+\section{The Result}
+Let $\mathcal{P}$ and $\mathcal{Q}$ be two families of probabilities.
+Consider the sequence of testing problems
+\begin{eqnarray*}
+H_{0} & : & P^{n}\in\mathcal{P}^{n}\\
+H_{a} & : & Q^{n}\in\mathcal{Q}^{n}
+\end{eqnarray*}
+Here $P^{n}$ is the product of $n$ probability measures $P$. This
+corresponds to independent and identical sampling of $n$ points from
+$P$. A test with level $\alpha$ is a sequence of sets $\left(A_{1},A_{2},\ldots\right)$
+satisfying $P^{n}\left(A_{n}\right)\geq1-\alpha$ for all $n$. The
+sets $A_{n}$ are the \emph{acceptance sets }for $H_{0}$. A test\emph{
+}is biased if there for every $n$ is a member $Q\in\mathcal{Q}$
+satisfying $Q^{n}\left(A_{n}\right)\geq1-\alpha$. A test is uniformly unbiased
+if it is not biased. These definitions are straightforward adaptations
+of the classical definitions found in e.g. \citet{lehmann2006testing}.
+
+All mentions of "almost everywhere" are with respect to the Lebesgue
+measure.
+\begin{thm}
+\label{thm:Main theorem}There is no uniformly unbiased test of independence
+of any level for densities on $\mathbb{R}^{k}$, $k\geq2$.
+\end{thm}
+Let $\mathcal{P}$ be the family of independent densities, $\mathcal{Q}$ be the family of dependent densities, and $A_n$ a set satisfying $P^{n}\left(A_{n}\right)\geq1-\alpha$ for all $P\in \mathcal{P}$. Let $I\in\Sigma$ be a hypercube in $\mathbb{R}^{k}$. Then there
+is a $Q\in\mathcal{Q}$ that fails to be independent on $I$, for
+instance when $Q$ equals the diagonal of $I$. Choose an $n\in\mathbb{N}$
+and take a look at $I^{n}\cap A_{n}$, where one of three things can happen.
+\begin{enumerate}[label=(\roman*)]
+\item The intersection is empty almost everywhere. Choose a $Q\in Q$
+which equals a $P\in\mathcal{P}$ everywhere except $I$. Then $Q^{n}\left(A_{n}\right)\geq1-\alpha$,
+and the test is biased.
+\item The intersection equals $I^{n}$ almost everywhere. Choose a $Q\in Q$ which equals some $P\in\mathcal{P}$ on $I$. Then $Q^{n}\left(A_{n}\right)\geq1-\alpha,$ and the test is biased.
+\item The intersection is something else entirely. That is, both $I^{n}\cap A_{n}\neq\emptyset$ and $I^{n}\cap A_{n}\neq I^{n}$ are true almost everywhere.
+\end{enumerate}
+If (i) or (ii) holds the test $A_{n}$ is biased, so we will have to take a look at case (iii). For the test to have a chance of being unbiased, this condition has to hold for all hypercubes $I$. 
+
+The family $\mathcal{P}$ includes the uniform distribution on $I$ for every hypercube $I$. A uniform distribution has probability measure $P\left(B\right)=\lambda\left(B\cap I\right)/\lambda\left(I\right)$. Since $P\left(A_{n}\right)\geq1-\alpha$ for all $P\in\mathcal{P}$, $\lambda\left(A_{n}\cap I\right)/\lambda\left(I\right)\geq1-\alpha$. But then $\lambda\left(A^{c}\right)=0$ by the following lemma.
+\begin{lem}
+\label{lem:Main lemma}Let $A$ be Lebesgue measurable. If there is a real number $c>0$ such that $\lambda\left(A\cap U\right)\geq c\lambda\left(U\right)$ for every hypercube $U$ then $A^{c}$ has measure $0$.
+\end{lem}
+\begin{proof}
+By assumption, $$\lambda\left(A^{c}\cap U\right)\leq\left(1-c\right)\lambda\left(U\right)$$ for each $U$. By Lebesgue's density theorem \citep[Theorem 7.10]{rudin2006real}, when $U_{x}$ is a hypercube centered on $x$, $\lambda\left(A^{c}\cap U_{x}\right)/\lambda\left(U_{x}\right)$ converges to $1$ as $\lambda\left(U_x\right) \to 0$ for almost all $x\in A^{c}.$ But $\lambda\left(A^{c}\cap U_{x}\right)/\lambda\left(U_{x}\right)\leq1-c$, so $\lambda\left(A^{c}\cap U_{x}\right)/\lambda\left(U_{x}\right)$ fails to converge to $1$ for all $x\in A^{c}$. Hence $A^{c}$ has measure $0$.
+\end{proof}
+If $\lambda\left(A^{c}\right)=0$ then condition (ii) holds for every $I$. This implies the test is biased and Theorem \ref{thm:Main theorem} follows.
+\section*{Acknowledgement}
+Thanks to Olav Dovland for helpful comments.
+\bibliography{power}
+\end{document}
